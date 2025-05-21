@@ -55,8 +55,14 @@ string ReadStringFromConsole(string promptMessage)
 
 int ReadNumberFromConsole(string promptMessage)
 {
-    var str = ReadStringFromConsole(promptMessage);
-    var result = int.Parse(str);
+    var result = 0;
+    var isNumber = false;
+    while (!isNumber)
+    {
+        var str = ReadStringFromConsole(promptMessage);
+        isNumber = int.TryParse(str, out result);
+    }
+
     return result;
 }
 
