@@ -1,9 +1,5 @@
-﻿Console.Write("What's your name? ");
-var name = Console.ReadLine() ?? "";
-
-Console.Write("What year were your born in? ");
-var yearOfBirthStr = Console.ReadLine() ?? "";
-var yearOfBirth = int.Parse(yearOfBirthStr);
+﻿var name = ReadStringFromConsole("What's your name? ");
+var yearOfBirth = ReadNumberFromConsole("What year were your born in? ");
 
 var age = 2025 - yearOfBirth;
 
@@ -17,18 +13,7 @@ else if (age % name.Length == 0)
 }
 else
 {
-    var isNameLengthPrime = true;
-    var i = 2;
-
-    while (i <= name.Length / 2 && isNameLengthPrime)
-    {
-        if (name.Length % i == 0)
-        {
-            isNameLengthPrime = false;
-        }
-
-        i++;
-    }
+    var isNameLengthPrime = IsPrime(name.Length);
 
     if (isNameLengthPrime)
     {
@@ -37,18 +22,7 @@ else
     else
     {
         var yearOfBirth2Digits = yearOfBirth % 100;
-        var isYearOfBirth2DigitsPrime = true;
-        i = 2;
-
-        while (i < yearOfBirth2Digits / 2 && isYearOfBirth2DigitsPrime)
-        {
-            if (yearOfBirth2Digits % i == 0)
-            {
-                isYearOfBirth2DigitsPrime = false;
-            }
-
-            i++;
-        }
+        var isYearOfBirth2DigitsPrime = IsPrime(yearOfBirth2Digits);
 
         if (isYearOfBirth2DigitsPrime)
         {
@@ -56,11 +30,11 @@ else
         }
         else
         {
-            if (name.Length % 2 == 0)
+            if (IsEven(name.Length))
             {
                 Console.WriteLine($"Youuuuuu beloooooong toooooo Slytherin! Because the length of your name ({name.Length}) is even.");
             }
-            else if (yearOfBirth % 2 == 0)
+            else if (IsEven(yearOfBirth))
             {
                 Console.WriteLine($"Youuuuuu beloooooong toooooo Slytherin! Because the year you were born in is ({yearOfBirth}) is even.");
             }
@@ -70,4 +44,41 @@ else
             }
         }
     }
+}
+
+string ReadStringFromConsole(string promptMessage)
+{
+    Console.Write(promptMessage);
+    var result = Console.ReadLine() ?? "";
+    return result;
+}
+
+int ReadNumberFromConsole(string promptMessage)
+{
+    var str = ReadStringFromConsole(promptMessage);
+    var result = int.Parse(str);
+    return result;
+}
+
+bool IsPrime(int n)
+{
+    var isPrime = true;
+    var i = 2;
+
+    while (i <= n / 2 && isPrime)
+    {
+        if (n % i == 0)
+        {
+            isPrime = false;
+        }
+
+        i++;
+    }
+
+    return isPrime;
+}
+
+bool IsEven(int n)
+{
+    return n % 2 == 0;
 }
