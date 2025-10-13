@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TownleyPlayground", "Townle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTests", "FastTests\FastTests.csproj", "{BB979A94-9E50-46B2-BFDA-72BA1BC95295}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{AF315DAE-F771-4D9A-8B16-8D1EE69B191A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{BB979A94-9E50-46B2-BFDA-72BA1BC95295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB979A94-9E50-46B2-BFDA-72BA1BC95295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB979A94-9E50-46B2-BFDA-72BA1BC95295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF315DAE-F771-4D9A-8B16-8D1EE69B191A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF315DAE-F771-4D9A-8B16-8D1EE69B191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF315DAE-F771-4D9A-8B16-8D1EE69B191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF315DAE-F771-4D9A-8B16-8D1EE69B191A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

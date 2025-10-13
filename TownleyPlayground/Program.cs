@@ -5,3 +5,4 @@ var romanNumeralStr = improvedConsole.ReadStringFromUser("Enter your Roman numer
 var romanNumeral = RomanNumeral.Parse(romanNumeralStr.ToUpperInvariant());
 
 Console.WriteLine($"{romanNumeral.RomanRepresentation} = {romanNumeral.DecimalRepresentation}");
+
