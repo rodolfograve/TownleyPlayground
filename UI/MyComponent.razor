@@ -1,0 +1,18 @@
+﻿<button @onclick="OnClick">Click Me on Tuesdays</button>
+
+@code {
+    [Parameter] public EventCallback OnMyCustomEvent { get; set; }
+
+    private async Task OnClick()
+    {
+        if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
+        {
+            await TriggerMyCustomEvent();
+        }
+    }
+
+    private async Task TriggerMyCustomEvent()
+    {
+        await OnMyCustomEvent.InvokeAsync(null);
+    }
+}

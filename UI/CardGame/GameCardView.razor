@@ -1,0 +1,19 @@
+﻿<div style="display: flex; width: 12rem; height: 15rem; background-color: @Card.BackgroundColor; color: @Card.ForegroundColor; border: @GetBorderStyle(); gap: 1rem; padding: 1rem;" @onclick="OnClick" title="@Card.Description">
+    <div>@Card.Name</div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public GameCard Card { get; set; } = default!;
+    [Parameter, EditorRequired] public EventCallback<GameCard> OnCardSelected { get; set; }
+    [Parameter, EditorRequired] public bool IsSelected { get; set; }
+
+    private string GetBorderStyle()
+    {
+        return IsSelected ? "3px solid blue" : $"1px solid {Card.BorderColor}";
+    }
+
+    private void OnClick()
+    {
+        OnCardSelected.InvokeAsync(Card);
+    }
+}

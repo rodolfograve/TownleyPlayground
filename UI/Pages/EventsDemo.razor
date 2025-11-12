@@ -1,0 +1,33 @@
+﻿@page "/events-demo"
+
+<div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div id="mouse-coordinates-example">
+        <div style="width: 500px; height: 500px; background-color: salmon; border-radius: 30px; border-width: 3px; border-color: darkgray; border-style: solid;" @onmousemove="@OnMouseMoved">
+        </div>
+
+        @("if <p>Last Mouse X was @LastMouseX</p>")
+        <p>Last Mouse Y was @LastMouseY</p>
+    </div>
+
+    <div id="number-example">
+        <input type="number" @bind-value=InputNumber />
+
+        <span style="font-size: @NumberFontSize">@InputNumber</span>
+    </div>
+
+</div>
+
+@code {
+    int InputNumber = 0;
+
+    int LastMouseX = 0;
+    int LastMouseY = 0;
+
+    int NumberFontSize = 12;
+
+    void OnMouseMoved(MouseEventArgs e)
+    {
+        LastMouseX = (int)e.ClientX;
+        LastMouseY = (int)e.ClientY;
+    }
+}

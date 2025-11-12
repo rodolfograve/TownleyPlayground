@@ -1,0 +1,65 @@
+﻿@page "/weather"
+@inject HttpClient Http
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div style="display: flex; flex-direction: row; gap: 1rem;">
+        <input type="number" required @bind="Latitude" name="Latitude" placeholder="Latitude" step="0.1" />
+        <input type="number" required @bind="Longitude" name="Longitude" placeholder="Longitude" step="0.1" />
+        <button type="submit" @onclick="GetCurrentWeather" disabled="@(!Latitude.HasValue || !Longitude.HasValue)">Get Current Weather</button>
+    </div>
+
+    @if (Latitude.HasValue && Longitude.HasValue)
+    {
+        @if (IsLoading)
+        {
+            <div>Loading...</div>
+        }
+        else if (Forecast is not null)
+        {
+            <div>
+                The weather forecast for Latitude @Latitude and Longitude @Longitude at @Forecast.current.time is:
+                <ul>
+                    <li>Temperature (at 2m off the ground): @Forecast.current.temperature_2m °C</li>
+                    <li>Relative humidity (at 2m off the ground): @Forecast.current.relative_humidity_2m %</li>
+                    <li>Wind Speed (at 10m off the ground): @Forecast.current.wind_speed_10m m/s</li>
+                    <li>Wind Speed (at 100m off the ground): @Forecast.current.wind_speed_100m m/s</li>
+                </ul>
+            </div>
+        }
+    }
+</div>
+@code {
+    private bool IsLoading { get; set; }
+    private decimal? Latitude { get; set; }
+    private decimal? Longitude { get; set; }
+    private WeatherForecast? Forecast { get; set; }
+
+    public async Task GetCurrentWeather()
+    {
+        IsLoading = true;
+        if (Latitude.HasValue && Longitude.HasValue)
+        {
+            Forecast = await Http.GetFromJsonAsync<WeatherForecast>($"https://api.open-meteo.com/v1/forecast?latitude={Latitude.Value}&longitude={Longitude.Value}&current=temperature_2m,wind_speed_10m,relative_humidity_2m,wind_speed_100m");
+        }
+        IsLoading = false;
+    }
+
+    public class WeatherForecast
+    {
+        public WeatherForecastItem current { get; set; }
+    }
+
+    public class WeatherForecastItem
+    {
+        public DateTime time { get; set; }
+
+        public decimal temperature_2m { get; set; }
+        public decimal wind_speed_10m { get; set; }
+        public decimal relative_humidity_2m { get; set; }
+        public decimal wind_speed_100m { get; set; }
+    }
+}
