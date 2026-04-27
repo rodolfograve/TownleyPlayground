@@ -1,5 +1,9 @@
 ﻿using ConsoleUI;
 
+Console.BackgroundColor = ConsoleColor.Green;
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.WriteLine("This program is great!");
+
 MyClass obj1 = new MyClass("Object 1");
 MyClass obj2 = obj1;
 
@@ -25,4 +29,3 @@ v[0] = 100;
 
 Console.WriteLine($"Output #3.1: {string.Join(", ", v)}");
 Console.WriteLine($"Output #3.2: {string.Join(", ", v2)}");
-

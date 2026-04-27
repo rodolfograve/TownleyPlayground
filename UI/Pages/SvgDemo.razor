@@ -1,0 +1,30 @@
+﻿@page "/svg-demo"
+
+<svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:sans-serif">
+    <defs>
+        <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0,10 3.5,0 7" fill="#888780" />
+        </marker>
+    </defs>
+
+    <!-- Box A: x=40, y=60, width=140, height=80 -->
+    <rect x="40" y="60" width="140" height="80" rx="8"
+          fill="white" stroke="#ccc" stroke-width="0.5" />
+    <text x="110" y="96" text-anchor="middle" font-size="14" font-weight="500" fill="#111">Box A</text>
+    <text x="110" y="114" text-anchor="middle" font-size="12" fill="#666">x=40 w=140 h=80</text>
+
+    <!-- Box B: x=440, y=30, width=140, height=140 -->
+    <rect x="440" y="30" width="140" height="140" rx="8"
+          fill="white" stroke="#ccc" stroke-width="0.5" />
+    <text x="510" y="96" text-anchor="middle" font-size="14" font-weight="500" fill="#111">Box B</text>
+    <text x="510" y="114" text-anchor="middle" font-size="12" fill="#666">x=440 w=140 h=140</text>
+
+    <!-- Arrow: right edge of A → left edge of B -->
+    <!-- x1 = 40+140=180, y1 = 60+80/2=100, x2 = 440, y2 = 30+140/2=100 -->
+    <line x1="180" y1="100" x2="440" y2="100"
+          stroke="#888780" stroke-width="1.5" marker-end="url(#arr)" />
+</svg>
+
+@code {
+
+}
